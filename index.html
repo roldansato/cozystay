@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cozy Stay — Condo Management in Cebu &amp; Davao</title>
+<meta name="description" content="Cozy Stay manages short-term rentals for condo owners in Cebu and Davao: listing, guests, cleaning and monthly statements, with your own owner dashboard.">
+<meta property="og:title" content="Cozy Stay — Condo Management in Cebu &amp; Davao">
+<meta property="og:description" content="Listing, guests, housekeeping and owner reporting, handled for you. Book a free discovery call.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#F4EFE7;--card:#FBF8F3;--ink:#2E3B2B;--sage:#566A49;--sage-l:#E6E9DD;--clay:#9C4A2A;--body:#46423C;--muted:#6B655C;--rule:#D8CDBF}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font:17px/1.6 'Figtree',Arial,sans-serif}
+h1,h2,h3{font-family:'Lora',Georgia,serif;font-weight:500;color:var(--ink);margin:0;line-height:1.12}
+h2{font-size:clamp(30px,4.4vw,46px)}
+h3{font-size:24px}
+p{margin:0 0 14px}
+a{color:var(--clay)}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.kicker{color:var(--sage);font-weight:600;letter-spacing:.14em;font-size:13px;text-transform:uppercase;margin-bottom:12px}
+section{padding:84px 0;border-top:1px solid var(--rule)}
+.lead{font-size:20px;max-width:760px}
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(244,239,231,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;gap:18px;height:64px}
+nav .brand{display:flex;align-items:center;gap:10px;font-family:'Lora',serif;font-size:20px;color:var(--ink);text-decoration:none;flex:none}
+nav .brand img{height:42px}
+nav .links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+nav .links::-webkit-scrollbar{display:none}
+nav .links a{color:var(--body);text-decoration:none;font-size:15px;padding:8px 12px;border-radius:999px;white-space:nowrap}
+nav .links a.on,nav .links a:hover{background:var(--sage-l);color:var(--ink)}
+/* hero */
+.hero{padding:70px 0 80px;border:0}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,68px);margin:6px 0 20px}
+.hero .tag{font-family:'Lora',serif;font-style:italic;color:var(--sage);font-size:22px;margin:22px 0 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}
+.stat{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:16px}
+.stat b{display:block;font-family:'Lora',serif;font-size:32px;color:var(--ink);font-weight:500;line-height:1.1}
+.stat span{font-size:14px;color:var(--muted)}
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.collage img{border-radius:10px;width:100%;height:auto}
+.collage div{display:flex;flex-direction:column;gap:14px}
+.collage div:last-child{margin-top:48px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:13px 22px;font:600 16px 'Figtree',sans-serif;border:1.5px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:36px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:22px}
+.card h3{font-size:21px;margin-bottom:8px}
+.card p{margin:0;font-size:16px}
+.num{color:var(--clay);font-weight:600;font-size:14px;margin-bottom:8px;display:block}
+.promise{margin-top:30px;background:var(--sage-l);border-radius:16px;padding:22px 26px;color:var(--ink);font-size:18px}
+/* apps */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:30px 0 26px}
+.tab{border:1.5px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:11px 18px;font:600 15px 'Figtree',sans-serif;cursor:pointer;min-height:44px}
+.tab[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.app{display:grid;grid-template-columns:320px 1fr;gap:48px;align-items:start}
+.phone{width:300px;border:9px solid var(--ink);border-radius:38px;overflow:hidden;background:#fff;box-shadow:0 24px 50px rgba(46,59,43,.2);margin:0 auto}
+.phone img{width:100%;height:auto;transition:opacity .25s}
+.screens{display:flex;flex-direction:column;gap:10px}
+.screen{display:flex;gap:16px;text-align:left;width:100%;background:var(--card);border:1.5px solid var(--rule);border-radius:14px;padding:16px 18px;cursor:pointer;font:inherit;color:inherit}
+.screen:hover{border-color:var(--sage)}
+.screen[aria-pressed=true]{border-color:var(--ink);background:#fff;box-shadow:0 6px 18px rgba(46,59,43,.08)}
+.screen b{display:block;font-family:'Lora',serif;font-weight:500;font-size:20px;color:var(--ink);margin-bottom:2px}
+.screen small{font-size:15px;color:var(--body);line-height:1.5;display:block}
+.screen .i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--sage-l);color:var(--sage);display:grid;place-items:center;font-weight:700;font-size:14px}
+.screen[aria-pressed=true] .i{background:var(--clay);color:#fff}
+.note{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+/* journey */
+.journey{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:start;margin-top:36px}
+.track{display:flex;gap:6px;margin-bottom:22px}
+.track button{flex:1;height:8px;border-radius:4px;border:0;background:var(--rule);cursor:pointer;padding:0}
+.track button.done{background:var(--sage)}
+.track button.cur{background:var(--clay)}
+.jcard{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:30px}
+.who{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--sage-l);color:var(--sage);margin-bottom:14px}
+.who.owner{background:#F3E1D6;color:var(--clay)}
+.jcard h3{font-size:30px;margin-bottom:12px}
+.jcard ul{margin:14px 0 0;padding-left:20px}
+.jcard li{margin-bottom:6px}
+.jnav{display:flex;justify-content:space-between;margin-top:22px;gap:12px}
+/* steps accordion */
+.steps{margin-top:30px;border-top:1px solid var(--rule)}
+details{border-bottom:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;display:flex;gap:18px;align-items:center;padding:18px 4px;font-family:'Lora',serif;font-size:22px;color:var(--ink)}
+summary::-webkit-details-marker{display:none}
+summary .n{font-family:'Figtree',sans-serif;color:var(--clay);font-size:15px;font-weight:600;width:28px}
+summary::after{content:'+';margin-left:auto;font-family:'Figtree';font-size:24px;color:var(--sage)}
+details[open] summary::after{content:'–'}
+details p{padding:0 4px 18px 50px;margin:0;max-width:760px}
+/* units */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 18px}
+.unitgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.unit{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:18px}
+.unit b{font-family:'Lora',serif;font-weight:500;font-size:20px;color:var(--ink);display:block}
+.unit span{font-size:15px}
+.unit em{font-style:normal;font-size:13px;color:var(--sage);font-weight:600;display:block;margin-top:8px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px;align-items:start}
+.gallery figure{margin:0}
+.gallery img{border-radius:10px;width:100%;height:auto}
+.gallery figcaption{font-size:14px;color:var(--muted);margin-top:8px}
+/* fees */
+.fees{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px;align-items:start}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td{padding:14px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+td:first-child{font-weight:600;color:var(--ink);width:38%}
+.calc label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:14px 0 6px}
+.calc input,.calc select{width:100%;padding:12px 14px;border:1.5px solid var(--rule);border-radius:10px;font:16px 'Figtree',sans-serif;background:#fff;color:var(--ink)}
+.calc .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--rule);font-size:16px}
+.calc .row.t{border:0;font-weight:700;color:var(--ink);font-size:19px;padding-top:14px}
+.calc .out{margin-top:18px}
+.calc .fine{font-size:13px;color:var(--muted);margin-top:12px}
+/* founder */
+.founder{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px}
+.bg-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.bg-row b{width:42%;flex:none;color:var(--ink)}
+/* contact */
+.contact{background:var(--ink);color:#EEE9DF;border-radius:24px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.contact h2{color:#fff}
+.contact .socials{display:flex;flex-direction:column;gap:10px}
+.contact .socials div{background:rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;font-size:16px}
+.contact .socials b{color:#fff}
+/* booking */
+.book{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;margin-top:34px;align-items:start}
+.cal{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:22px}
+.calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.calhead b{font-family:'Lora',serif;font-weight:500;font-size:22px;color:var(--ink)}
+.calhead button{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--rule);background:#fff;font-size:18px;cursor:pointer;color:var(--ink)}
+.calhead button:disabled{opacity:.35;cursor:default}
+.dow,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center}
+.dow span{font-size:13px;color:var(--muted);font-weight:600;padding:4px 0}
+.days button{aspect-ratio:1;min-height:40px;border-radius:10px;border:1.5px solid transparent;background:#fff;font:500 16px 'Figtree',sans-serif;color:var(--ink);cursor:pointer}
+.days button:disabled{background:transparent;color:#B9B1A6;cursor:default}
+.days button.sel{background:var(--ink);color:#fff}
+.days button:not(:disabled):hover{border-color:var(--sage)}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin-top:14px}
+.slots button{min-height:44px;border-radius:10px;border:1.5px solid var(--rule);background:#fff;font:600 15px 'Figtree',sans-serif;color:var(--ink);cursor:pointer}
+.slots button[aria-pressed=true]{background:var(--clay);border-color:var(--clay);color:#fff}
+.bform label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:12px 0 6px}
+.bform input,.bform select,.bform textarea{width:100%;padding:12px 14px;border:1.5px solid var(--rule);border-radius:10px;font:16px 'Figtree',sans-serif;background:#fff;color:var(--ink)}
+.bform textarea{min-height:80px;resize:vertical}
+.summary{margin-top:16px;padding:14px 16px;border-radius:12px;background:var(--sage-l);color:var(--ink);font-size:16px}
+.err{color:var(--clay);font-size:14px;margin-top:10px;min-height:20px}
+.mail{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:14px}
+@media (max-width:860px){
+ .hero .grid,.app,.journey,.fees,.founder,.contact,.book{grid-template-columns:1fr}
+ .cal{padding:14px}.days{gap:4px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .gallery{grid-template-columns:repeat(2,1fr)}
+ .phone{width:260px}
+ .journey .phone{order:-1}
+ section{padding:60px 0}
+ .contact{padding:30px}
+ nav .brand span{display:none}
+}
+</style>
+</head>
+<body>
+<nav aria-label="Sections">
+ <div class="wrap">
+  <a class="brand" href="#top"><img src="logo.png" alt="Cozy Stay logo"><span>Company Profile</span></a>
+  <div class="links" id="navlinks">
+   <a href="#about">About</a><a href="#services">Services</a><a href="#apps">Our apps</a><a href="#journey">How it works</a><a href="#units">Units</a><a href="#fees">Fees</a><a href="#founder">Founder</a><a href="#book">Book a call</a>
+  </div>
+ </div>
+</nav>
+
+<header class="hero" id="top">
+ <div class="wrap grid">
+  <div>
+   <div class="kicker">Company profile · 2026</div>
+   <h1>Short-term rental management for condo owners in Cebu and Davao.</h1>
+   <p class="lead">Styling, listing, guests, housekeeping and monthly reporting, handled for you, and now visible to you anytime in your own owner dashboard.</p>
+   <div class="btns"><a class="btn" href="#book">Book a discovery call</a><a class="btn ghost" href="#apps">See the apps</a></div>
+   <div class="stats">
+    <div class="stat"><b>12</b><span>condo units managed</span></div>
+    <div class="stat"><b>2</b><span>cities: Cebu &amp; Davao</span></div>
+    <div class="stat"><b>2022</b><span>Airbnb host since Dec</span></div>
+    <div class="stat"><b>3</b><span>channels: Airbnb, Booking.com, direct</span></div>
+   </div>
+  </div>
+  <div class="collage">
+   <div><img src="p_sanremo.jpg" alt="Living and dining area at Sanremo Oasis, Cebu"><img src="p_kitchen.jpg" alt="Styled kitchen and dining nook"></div>
+   <div><img src="p_dining.jpg" alt="Dining table set for guests"><img src="p_davao.jpg" alt="Studio living area in Davao"></div>
+  </div>
+ </div>
+</header>
+
+<section id="about">
+ <div class="wrap">
+  <div class="kicker">Who we are</div>
+  <h2>Your condo can do more than sit empty, or rent at the same rate as every unit around it.</h2>
+  <p class="lead" style="margin-top:22px">Cozy Stay helps unit owners in Cebu and Davao turn their condominium into a well-styled, well-run short-term rental. We handle the listing, the guests, the cleaning and the numbers, using a property management system and apps we built ourselves. You own the unit. We make it perform.</p>
+  <p class="lead">We are a small, hands-on company. Our founder handles guest relations, listings and owner reporting personally, supported by cleaning staff in each city who work from our Cleaner App.</p>
+  <div class="promise"><b>Our promise.</b> We do not promise a fixed income, because results depend on the unit, the building and the season. We promise that your unit is presented well, priced thoughtfully and managed carefully every day, with records you can check yourself.</div>
+ </div>
+</section>
+
+<section id="services">
+ <div class="wrap">
+  <div class="kicker">What we do for owners</div>
+  <h2>How we help you get the most from your unit</h2>
+  <div class="cards">
+   <div class="card"><span class="num">01</span><h3>Unit styling and design</h3><p>A distinct look so your unit stands out in search instead of blending in with similar condos.</p></div>
+   <div class="card"><span class="num">02</span><h3>Listing optimization</h3><p>Titles, descriptions and photo order that show what makes your unit different.</p></div>
+   <div class="card"><span class="num">03</span><h3>Pricing strategy</h3><p>Weekday, weekend, weekly and monthly rates reviewed regularly, with an agreed minimum.</p></div>
+   <div class="card"><span class="num">04</span><h3>More ways to be booked</h3><p>Airbnb, Booking.com and direct bookings through our Facebook, Instagram and TikTok.</p></div>
+   <div class="card"><span class="num">05</span><h3>Guest experience</h3><p>Fast replies, clear arrival instructions and consistent cleaning lead to better reviews.</p></div>
+   <div class="card"><span class="num">06</span><h3>Housekeeping you can see</h3><p>Every turnover follows a checklist in our Cleaner App, with photos of each area.</p></div>
+   <div class="card"><span class="num">07</span><h3>Cost control</h3><p>Every expense is logged against your unit with a receipt, so nothing is charged twice.</p></div>
+   <div class="card"><span class="num">08</span><h3>Your time back</h3><p>No midnight guest messages or chasing cleaners. Open your dashboard when you want to check.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="apps">
+ <div class="wrap">
+  <div class="kicker">Our own apps</div>
+  <h2>Built in-house, so nothing falls through the cracks</h2>
+  <p class="lead" style="margin-top:18px">Many small managers rely on chat threads and memory. Cozy Stay runs on apps our founder designed and built on top of our property management system. Tap a screen to see it.</p>
+  <div class="tabs" role="tablist" aria-label="Apps">
+   <button class="tab" role="tab" aria-selected="true" data-app="owner">Owner dashboard</button>
+   <button class="tab" role="tab" aria-selected="false" data-app="cleaner">Cleaner App</button>
+   <button class="tab" role="tab" aria-selected="false" data-app="admin">Behind the scenes</button>
+  </div>
+  <div class="app">
+   <div><div class="phone"><img id="appImg" src="o_today.jpg" alt=""></div><p class="note">Screens from our live apps. Guest and owner details are hidden.</p></div>
+   <div>
+    <p id="appIntro" style="font-size:18px;margin-bottom:18px"></p>
+    <div class="screens" id="screens"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="journey">
+ <div class="wrap">
+  <div class="kicker">How it works</div>
+  <h2>Follow one booking, from reservation to your statement</h2>
+  <p class="lead" style="margin-top:18px">See where the cleaners' app and your owner dashboard come in.</p>
+  <div class="journey">
+   <div>
+    <div class="track" id="track" aria-label="Steps"></div>
+    <div class="jcard" aria-live="polite">
+     <span class="who" id="jWho"></span>
+     <h3 id="jTitle"></h3>
+     <p id="jText" style="font-size:17px"></p>
+     <ul id="jList"></ul>
+    </div>
+    <div class="jnav"><button class="btn ghost" id="prev">&#8592; Back</button><button class="btn" id="next">Next step &#8594;</button></div>
+   </div>
+   <div class="phone"><img id="jImg" src="c_dailyops.jpg" alt=""></div>
+  </div>
+ </div>
+</section>
+
+<section id="process">
+ <div class="wrap">
+  <div class="kicker">How we manage your property</div>
+  <h2>Ten stages, the same for every unit</h2>
+  <div class="steps" id="steps"></div>
+  <div class="promise"><b>Your part.</b> You set your goals and owner-use dates, approve the fee, cleaning rates, listing and any purchases, agree on a minimum rate, and approve major repairs. We handle everything else.</div>
+ </div>
+</section>
+
+<section id="units">
+ <div class="wrap">
+  <div class="kicker">Property portfolio</div>
+  <h2>The units we manage today</h2>
+  <p class="lead" style="margin-top:18px">Each unit is privately owned. Our founder personally styled the four Sanremo Oasis units: same building, same rates, four distinct stays that attract different guests.</p>
+  <div class="chips" role="group" aria-label="Filter by city">
+   <button class="tab" aria-pressed="true" data-city="all">All 12</button>
+   <button class="tab" aria-pressed="false" data-city="cebu">Cebu · Sanremo Oasis</button>
+   <button class="tab" aria-pressed="false" data-city="davao">Davao · Bajada</button>
+  </div>
+  <div class="unitgrid" id="unitgrid"></div>
+  <div class="gallery">
+   <figure><img src="p_sanremo.jpg" alt="Sanremo Oasis living room"><figcaption>Sanremo Oasis, Cebu City</figcaption></figure>
+   <figure><img src="p_davao.jpg" alt="Davao studio living area"><figcaption>Bajada, Davao City</figcaption></figure>
+   <figure><img src="p_kitchen.jpg" alt="Styled kitchen and dining nook"><figcaption>Styled kitchen and dining</figcaption></figure>
+   <figure><img src="p_dining.jpg" alt="Dining table set for guests"><figcaption>Guest-ready table setting</figcaption></figure>
+  </div>
+  <p class="note" style="text-align:left">Building amenities such as pools and gyms are run by each building's administration, not by Cozy Stay.</p>
+ </div>
+</section>
+
+<section id="fees">
+ <div class="wrap">
+  <div class="kicker">Services and fees</div>
+  <h2>What we handle, and how we charge</h2>
+  <div class="fees">
+   <div>
+    <table>
+     <tr><td>Management commission</td><td>From 15% of each booking's total payout. The final rate is agreed with you based on your unit.</td></tr>
+     <tr><td>Cleaning fee per stay</td><td>Studio ₱400 · 1-bedroom ₱600 · 2-bedroom ₱850</td></tr>
+     <tr><td>Unit expenses</td><td>Paid by the owner: utilities, association dues, laundry, guest supplies, repairs. Each is on your statement with its receipt.</td></tr>
+     <tr><td>Sign-up fee</td><td>₱5,000 one-time, covering the photo shoot for your listings.</td></tr>
+     <tr><td>Unit styling</td><td>Free. Items added or upgraded are at your expense and agreed with you first.</td></tr>
+     <tr><td>Full unit makeover</td><td>₱20,000 professional fee per unit. Furniture, decor and delivery at your expense.</td></tr>
+     <tr><td>Minimum contract</td><td>1 year. Prefer a fixed monthly income? Ask us about leasing your unit at an agreed rent.</td></tr>
+    </table>
+   </div>
+   <div class="card calc">
+    <h3>How a statement adds up</h3>
+    <p style="font-size:15px;margin-top:6px">Type an example to see how the lines on your monthly statement work.</p>
+    <label for="cType">Unit type</label>
+    <select id="cType"><option value="400">Studio</option><option value="600">1-bedroom</option><option value="850" selected>2-bedroom</option></select>
+    <label for="cPay">Total booking payouts for the month (₱)</label>
+    <input id="cPay" type="number" inputmode="numeric" min="0" step="500" value="40000">
+    <label for="cStays">Number of stays</label>
+    <input id="cStays" type="number" inputmode="numeric" min="0" value="6">
+    <label for="cExp">Other unit expenses (₱)</label>
+    <input id="cExp" type="number" inputmode="numeric" min="0" step="100" value="6000">
+    <div class="out" id="cOut"></div>
+    <p class="fine">Example arithmetic only, using a 15% commission. It is not a forecast: income depends on your unit, building and season.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="founder">
+ <div class="wrap">
+  <div class="kicker">About the founder</div>
+  <h2>Roldan Sato Jr.</h2>
+  <p style="color:var(--sage);font-weight:600;margin-top:8px">Founder, Cozy Stay · Airbnb Verified Host since December 2022</p>
+  <div class="founder">
+   <div>
+    <p>Roldan oversees every Cozy Stay unit personally, from the first guest inquiry to checkout and the owner's statement. He handles guest communication, reservations, listings and check-in coordination himself, and coordinates the cleaning staff and maintenance vendors who keep each unit guest-ready.</p>
+    <p>Before Cozy Stay he spent ten years in operations at PC Office Solutions in Tagum City, as Warehouse Manager (2012–2019) and Branch Manager (2019–2022). From 2023 to 2026 he worked remotely as Executive Virtual Assistant to the CEO of a US-based company, including its Airbnb listings.</p>
+    <p>He holds an Associate's Degree in Information Technology, and he built Cozy Stay's management system and apps himself. He is certified in SEO, social media marketing and Google Analytics.</p>
+   </div>
+   <div>
+    <div class="bg-row"><b>Hosting since 2022</b><span>Hands-on guest care, check-in, checkout and AirCover claims</span></div>
+    <div class="bg-row"><b>Warehouse &amp; branch management</b><span>Organized records, scheduling, vendor coordination</span></div>
+    <div class="bg-row"><b>IT background</b><span>The apps owners and cleaners use every day</span></div>
+    <div class="bg-row"><b>Remote executive support</b><span>Clear, timely updates for owners based elsewhere</span></div>
+    <div class="bg-row"><b>SEO, social &amp; analytics</b><span>Listing copy, photos and promotion</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="why">
+ <div class="wrap">
+  <div class="kicker">Why owners choose Cozy Stay</div>
+  <h2>Personal management, backed by records you can check</h2>
+  <div class="cards">
+   <div class="card"><span class="num">01</span><h3>One accountable person</h3><p>Managed by the founder himself, not passed between staff.</p></div>
+   <div class="card"><span class="num">02</span><h3>Our own apps</h3><p>Bookings, cleaning, expenses and payouts run through tools we built, with checks for double bookings and missing data.</p></div>
+   <div class="card"><span class="num">03</span><h3>A unit styled to stand out</h3><p>As we did for our four Sanremo Oasis units.</p></div>
+   <div class="card"><span class="num">04</span><h3>Statements you can trace</h3><p>Every booking, fee and expense, with receipts, in your dashboard.</p></div>
+   <div class="card"><span class="num">05</span><h3>Easy from anywhere</h3><p>Check today's guests or last month's statement from your phone, wherever you live.</p></div>
+  </div>
+  <div class="promise"><b>What to expect from us.</b> Cozy Stay is a small, founder-led company, not a large hotel operator. We do not guarantee occupancy or income. We do guarantee careful, transparent management of your property.</div>
+ </div>
+</section>
+
+<section id="book">
+ <div class="wrap">
+  <div class="kicker">Book a discovery call</div>
+  <h2>Pick a time to talk about your condo</h2>
+  <p class="lead" style="margin-top:18px">A free 30-minute call with Roldan. We talk about your unit and your goals, and you see the owner dashboard. No commitment.</p>
+  <div class="book">
+   <div class="cal">
+    <div class="calhead"><button id="mPrev" aria-label="Previous month">&#8249;</button><b id="mName"></b><button id="mNext" aria-label="Next month">&#8250;</button></div>
+    <div class="dow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+    <div class="days" id="days"></div>
+    <p id="slotLabel" style="margin:18px 0 0;font-weight:600;color:var(--ink)">Choose a date to see times</p>
+    <div class="slots" id="slots"></div>
+    <p class="note" style="text-align:left">Times are Philippine time. Monday to Saturday.</p>
+   </div>
+   <form class="card bform" id="bform" novalidate>
+    <h3>Your details</h3>
+    <label for="bName">Your name</label><input id="bName" autocomplete="name" required>
+    <label for="bPhone">Mobile or Messenger name</label><input id="bPhone" autocomplete="tel">
+    <label for="bCity">Where is your condo?</label>
+    <select id="bCity"><option>Cebu</option><option>Davao</option></select>
+    <label for="bUnit">Building and unit type</label><input id="bUnit" placeholder="e.g. Sanremo Oasis, 2-bedroom">
+    <label for="bStage">Where are you now?</label>
+    <select id="bStage"><option>Not listed yet</option><option>Already hosting</option></select>
+    <label for="bNote">Anything else? (optional)</label><textarea id="bNote"></textarea>
+    <div class="summary" id="bSum">No time picked yet.</div>
+    <p class="err" id="bErr" role="alert"></p>
+    <button class="btn" type="submit" style="width:100%;justify-content:center">Send appointment request</button>
+    <div class="mail"><span style="font-size:15px">Prefer email?</span><a class="btn ghost" id="bMail" href="mailto:roldansato@gmail.com" style="padding:10px 16px">Email the request</a></div>
+    <p class="note" style="text-align:left">"Send appointment request" opens Google Calendar with the invite ready. Tap Save and Roldan gets the invite at roldansato@gmail.com, then confirms with you.</p>
+   </form>
+  </div>
+ </div>
+</section>
+
+<section id="contact" style="border:0">
+ <div class="wrap">
+  <div class="contact">
+   <div>
+    <div class="kicker" style="color:#C9D3B9">Let's talk</div>
+    <h2>Let's talk about your unit</h2>
+    <p style="margin-top:16px;font-size:18px">Email Roldan directly or book a call, and we will arrange an assessment of your condo. Good to mention: where it is, what type of unit, and whether you are already hosting.</p>
+    <div class="btns"><a class="btn" href="#book" style="background:#fff;color:var(--ink);border-color:#fff">Book a discovery call</a><a class="btn ghost" href="mailto:roldansato@gmail.com?subject=Cozy%20Stay%20discovery%20call" style="color:#fff;border-color:#fff">Email Roldan</a></div>
+   </div>
+   <div class="socials">
+    <div><b>Email</b> · roldansato@gmail.com</div>
+    <div><b>Facebook</b> · Cozy Stay</div>
+    <div><b>Instagram</b> · @yourcozystay</div>
+    <div><b>TikTok</b> · @your.cozy.stay</div>
+   </div>
+  </div>
+ </div>
+</section>
+<footer>Cozy Stay · Curated Stays, Memorable Experiences · Cebu &amp; Davao</footer>
+
+<script>
+const APPS={
+ owner:{intro:'Every owner gets a private link. No app to install, no waiting for a message: open it whenever you want to check.',s:[
+  ['o_today','Today','Who is arriving, checking out and staying in your units, with occupancy for tonight.'],
+  ['o_calendar','Calendar','Every booking across your units on one timeline. Pick a month or a date range.'],
+  ['o_glance','Statements','Your approved monthly statement: income, commission, cleaning, expenses and net, with a PDF to download.'],
+  ['o_updates','Updates','New bookings, payments and finished repairs, as they happen.']]},
+ cleaner:{intro:'Our cleaners work from one app in Tagalog and English. Tasks come straight from the bookings, so nothing is passed by text message.',s:[
+  ['c_turnovers','Task list','Turnovers appear automatically. Same-day check-ins are flagged and go first.'],
+  ['c_task','Task details','Guest count, arrival time, towels and bedding, aircon and room prep.'],
+  ['c_checklist','Checklist','Room-by-room checks, from fresh linens to the final lock check.'],
+  ['c_photos','Photos per area','Bed, bathroom, kitchen and living area photographed. Weak signal? Upload later.'],
+  ['c_damage','Report damage','Anything broken is reported with photos. Urgent issues hold the next turnover until fixed.']]},
+ admin:{intro:'Behind the scenes, the same system keeps operations, approvals and costs in one place.',s:[
+  ['c_dailyops','Daily operations','Check-ins, check-outs, occupancy and balances for all units, every morning.'],
+  ['c_admin','Review and approval','Cleaning photos, repairs and cleaner claims are reviewed before anything reaches your statement.'],
+  ['e_expense','Expenses with receipts','Each cost is logged against the right unit, with a photo of the receipt.']]}
+};
+const img=document.getElementById('appImg'),wrap=document.getElementById('screens'),intro=document.getElementById('appIntro');
+function showApp(k,i=0){
+ const a=APPS[k];intro.textContent=a.intro;wrap.innerHTML='';
+ a.s.forEach((s,j)=>{const b=document.createElement('button');b.className='screen';b.setAttribute('aria-pressed',j===i);
+  b.innerHTML='<span class="i">'+(j+1)+'</span><span><b>'+s[1]+'</b><small>'+s[2]+'</small></span>';
+  b.onclick=()=>pick(k,j);wrap.appendChild(b);});
+ pick(k,i);
+}
+function pick(k,j){const s=APPS[k].s[j];img.style.opacity=0;setTimeout(()=>{img.src=''+s[0]+'.jpg';img.alt=s[1]+' screen';img.style.opacity=1},150);
+ [...wrap.children].forEach((b,x)=>b.setAttribute('aria-pressed',x===j));}
+document.querySelectorAll('[data-app]').forEach(t=>t.onclick=()=>{document.querySelectorAll('[data-app]').forEach(x=>x.setAttribute('aria-selected',x===t));showApp(t.dataset.app)});
+showApp('owner');
+
+const J=[
+ ['Cozy Stay','A booking comes in','A guest books on Airbnb, Booking.com or directly with us. It goes into one bookings register that checks for double bookings and missing details.',['Guest messages and arrival instructions handled by our founder','Building ID requirements collected'],'c_dailyops'],
+ ['Cleaner App','A cleaning task is created','The turnover appears in the Cleaner App with the date, time and guest count. Same-day turnovers are flagged first.',['Assigned to a cleaner in that city','No back-and-forth by text'],'c_turnovers'],
+ ['Cleaner App','The unit is prepared','The cleaner sees what this guest needs: towels and bedding for the headcount, aircon on before arrival, balcony check.',['Late checkouts show on the task','Prep notes per unit'],'c_task'],
+ ['Cleaner App','Checklist and photos','Each room is checked off and photographed. Damage is reported in the app with photos, and urgent repairs hold the next stay.',['Photos of bed, bathroom, kitchen and living area','Works even with weak signal'],'c_photos'],
+ ['Cozy Stay','Approved guest-ready','We review the photos and mark the unit guest-ready. Cleaner claims and expenses are approved only with receipts.',['Repairs tracked until resolved','Missing receipts are flagged'],'c_admin'],
+ ['Your dashboard','You see it as it happens','New bookings, payments and finished repairs show in your Updates. Today and Calendar show who is staying.',['Private link, opens on any phone','No app to install'],'o_updates'],
+ ['Your dashboard','Your monthly statement','Once approved, your statement shows income, commission, cleaning, expenses and net, with a PDF. Payouts are recorded against it.',['Only approved statements are shown','Receipts on file for owner charges'],'o_glance']
+];
+let ji=0;const track=document.getElementById('track');
+J.forEach((_,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Step '+(i+1));b.onclick=()=>go(i);track.appendChild(b)});
+function go(i){ji=Math.max(0,Math.min(J.length-1,i));const s=J[ji];
+ const w=document.getElementById('jWho');w.textContent='Step '+(ji+1)+' of '+J.length+' · '+s[0];w.className='who'+(s[0]==='Your dashboard'?' owner':'');
+ document.getElementById('jTitle').textContent=s[1];document.getElementById('jText').textContent=s[2];
+ document.getElementById('jList').innerHTML=s[3].map(x=>'<li>'+x+'</li>').join('');
+ const im=document.getElementById('jImg');im.src=''+s[4]+'.jpg';im.alt=s[1]+' screen';
+ [...track.children].forEach((b,x)=>b.className=x<ji?'done':x===ji?'cur':'');
+ document.getElementById('prev').disabled=ji===0;document.getElementById('next').textContent=ji===J.length-1?'Start again ↺':'Next step →';}
+document.getElementById('prev').onclick=()=>go(ji-1);
+document.getElementById('next').onclick=()=>go(ji===J.length-1?0:ji+1);
+go(0);
+
+const ST=[['Property assessment','We review the unit, its furnishing and the building rules for short-term guests, and agree on your goals and owner-use dates.'],['Onboarding','We set up your unit, fee, cleaning rates and payout schedule, and your private owner dashboard link.'],['Listing and positioning','We write the listing, choose the photos and give the unit a clear identity.'],['Pricing and availability','Nightly, weekend, weekly and monthly rates based on the market and our booking history. Your owner-use dates are blocked.'],['Reservations and guests','We answer inquiries, confirm bookings, collect required guest IDs and send arrival instructions.'],['Unit readiness','Each turnover lands in the Cleaner App with a checklist and photo requirements.'],['Support during the stay','We handle guest questions, coordinate repairs and contact you before any significant cost.'],['Checkout and turnover','Cleaners inspect, photograph any damage and restock. Damage is documented and claimed through Airbnb AirCover where it applies.'],['Reviews and reputation','We review every guest, reply to public reviews and use feedback to improve the unit.'],['Reporting and payout','Your approved Statement of Account, with every booking, fee and expense, appears in your dashboard with a PDF.']];
+document.getElementById('steps').innerHTML=ST.map((s,i)=>'<details'+(i===0?' open':'')+'><summary><span class="n">'+String(i+1).padStart(2,'0')+'</span>'+s[0]+'</summary><p>'+s[1]+'</p></details>').join('');
+
+const U=[['cebu','Sanremo 1104','Scandinavian Retreat, with a workspace','2-bedroom · up to 5'],['cebu','Sanremo 1111','Modern Coastal Retreat, pool-facing balcony','2-bedroom · up to 5'],['cebu','Sanremo 1112','Mid-Century Mexican Villa, pool-facing balcony','2-bedroom · up to 5'],['cebu','Sanremo 1408','Modern Urban Retreat, with a workspace','2-bedroom · up to 5'],['davao','Inspiria 1121','Earth-tone studio with balcony','Studio · up to 3'],['davao','Inspiria 1125','Boutique studio with balcony','Studio · up to 3'],['davao','Inspiria 1402','French provincial studio','Studio · up to 3'],['davao','Inspiria 1518','Studio with Samal view','Studio · up to 4'],['davao','Inspiria 1816','Mt. Apo and Samal view','1-bedroom · up to 4'],['davao','Aeon Towers 2021','Skyline view','1-bedroom · up to 4'],['davao','Aeon Towers 2617','Skyline studio','Studio · up to 3'],['davao','Mesatierra 609','Cozy studio','Studio · up to 3']];
+function units(c){document.getElementById('unitgrid').innerHTML=U.filter(u=>c==='all'||u[0]===c).map(u=>'<div class="unit"><b>'+u[1]+'</b><span>'+u[2]+'</span><em>'+u[3]+' guests · '+(u[0]==='cebu'?'Cebu City':'Davao City')+'</em></div>').join('');}
+document.querySelectorAll('[data-city]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-city]').forEach(x=>x.setAttribute('aria-pressed',x===b));units(b.dataset.city)});
+units('all');
+
+const peso=n=>'₱'+Math.round(n).toLocaleString('en-PH');
+function calc(){const p=+cPay.value||0,s=+cStays.value||0,e=+cExp.value||0,f=+cType.value;const com=p*.15,cl=s*f,net=p-com-cl-e;
+ document.getElementById('cOut').innerHTML='<div class="row"><span>Booking payouts</span><span>'+peso(p)+'</span></div><div class="row"><span>Commission (15%)</span><span>− '+peso(com)+'</span></div><div class="row"><span>Cleaning ('+s+' × '+peso(f)+')</span><span>− '+peso(cl)+'</span></div><div class="row"><span>Other expenses</span><span>− '+peso(e)+'</span></div><div class="row t"><span>Net to you</span><span>'+peso(net)+'</span></div>';}
+['cPay','cStays','cExp','cType'].forEach(id=>document.getElementById(id).addEventListener('input',calc));calc();
+
+// booking calendar
+const EMAIL='roldansato@gmail.com',TIMES=['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00'];
+const today=new Date();today.setHours(0,0,0,0);
+const maxD=new Date(today);maxD.setDate(maxD.getDate()+45);
+let vm=new Date(today.getFullYear(),today.getMonth(),1),selD=null,selT=null;
+const fmtD=d=>d.toLocaleDateString('en-PH',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+const fmtT=t=>{let[h,m]=t.split(':').map(Number);return (h%12||12)+':'+String(m).padStart(2,'0')+(h<12?' AM':' PM')};
+function drawCal(){
+ document.getElementById('mName').textContent=vm.toLocaleDateString('en-PH',{month:'long',year:'numeric'});
+ document.getElementById('mPrev').disabled=vm<=new Date(today.getFullYear(),today.getMonth(),1);
+ document.getElementById('mNext').disabled=new Date(vm.getFullYear(),vm.getMonth()+1,1)>maxD;
+ const box=document.getElementById('days');box.innerHTML='';
+ const first=vm.getDay(),n=new Date(vm.getFullYear(),vm.getMonth()+1,0).getDate();
+ for(let i=0;i<first;i++)box.appendChild(document.createElement('span'));
+ for(let d=1;d<=n;d++){const dt=new Date(vm.getFullYear(),vm.getMonth(),d);const b=document.createElement('button');b.type='button';b.textContent=d;
+  b.disabled=dt<=today||dt>maxD||dt.getDay()===0;b.setAttribute('aria-label',fmtD(dt));
+  if(selD&&+dt===+selD)b.className='sel';b.onclick=()=>{selD=dt;selT=null;drawCal();drawSlots();sum()};box.appendChild(b);}
+}
+function drawSlots(){const s=document.getElementById('slots');s.innerHTML='';
+ document.getElementById('slotLabel').textContent=selD?'Times on '+fmtD(selD):'Choose a date to see times';
+ if(!selD)return;TIMES.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=fmtT(t);b.setAttribute('aria-pressed',t===selT);
+  b.onclick=()=>{selT=t;drawSlots();sum()};s.appendChild(b)});}
+const v=id=>document.getElementById(id).value.trim();
+function details(){return 'Discovery call request from the Cozy Stay profile\n\nName: '+v('bName')+'\nContact: '+v('bPhone')+'\nCity: '+v('bCity')+'\nBuilding / unit: '+v('bUnit')+'\nStage: '+v('bStage')+(v('bNote')?'\nNotes: '+v('bNote'):'');}
+function sum(){const el=document.getElementById('bSum');el.textContent=selD&&selT?'Discovery call · '+fmtD(selD)+' at '+fmtT(selT)+' (Philippine time), 30 minutes':selD?'Now pick a time.':'No time picked yet.';
+ const when=selD&&selT?fmtD(selD)+' at '+fmtT(selT)+' (PH time)':'(date and time to be agreed)';
+ document.getElementById('bMail').href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Discovery call request: '+when)+'&body='+encodeURIComponent('Preferred time: '+when+'\n\n'+details());}
+['bName','bPhone','bCity','bUnit','bStage','bNote'].forEach(id=>document.getElementById(id).addEventListener('input',sum));
+document.getElementById('mPrev').onclick=()=>{vm=new Date(vm.getFullYear(),vm.getMonth()-1,1);drawCal()};
+document.getElementById('mNext').onclick=()=>{vm=new Date(vm.getFullYear(),vm.getMonth()+1,1);drawCal()};
+document.getElementById('bform').addEventListener('submit',e=>{e.preventDefault();const err=document.getElementById('bErr');
+ if(!selD||!selT){err.textContent='Please pick a date and a time first.';return}
+ if(!v('bName')){err.textContent='Please add your name.';document.getElementById('bName').focus();return}
+ err.textContent='';const p=n=>String(n).padStart(2,'0');const [h,m]=selT.split(':').map(Number);
+ const ds=selD.getFullYear()+p(selD.getMonth()+1)+p(selD.getDate());const st=ds+'T'+p(h)+p(m)+'00';const en=ds+'T'+p(m===30?h+1:h)+p(m===30?0:30)+'00';
+ const url='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Cozy Stay discovery call · '+v('bName'))+'&dates='+st+'/'+en+'&ctz=Asia/Manila&add='+encodeURIComponent(EMAIL)+'&details='+encodeURIComponent(details());
+ const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+ err.style.color='var(--sage)';err.textContent='Google Calendar opened in a new tab. Tap Save there to send the invite.';});
+drawCal();drawSlots();sum();
+
+const links=[...document.querySelectorAll('#navlinks a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
