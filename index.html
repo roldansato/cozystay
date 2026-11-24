@@ -465,7 +465,7 @@ footer img{filter:brightness(0) invert(1);opacity:.85;height:34px}
  <div class="wrap">
   <div class="split" style="align-items:end">
    <div><div class="eyebrow">Book a discovery call</div><h2>Pick a time to talk about your condo.</h2></div>
-   <p class="intro" style="margin:0">A free 30-minute call with Roldan. We talk through your unit and your goals, and you see the owner dashboard. No commitment.</p>
+   <p class="intro" style="margin:0">A free 30-minute call with Roldan. We talk through your unit and your goals, and you see the owner dashboard. No commitment.<br><a href="https://script.google.com/macros/s/AKfycbyEyEwM4aLgp5LuGw3h-OUSqAh2uAml0QREJkSP6k4qzVu0qkcbz_ZRJEHbe6XfxJrK/exec?owners=1#est" target="_blank" rel="noopener" style="color:var(--sage);font-weight:600">Want an earnings estimate first? See what your unit could earn &#8594;</a></p>
   </div>
   <div class="book">
    <div class="cal">
@@ -487,12 +487,13 @@ footer img{filter:brightness(0) invert(1);opacity:.85;height:34px}
      <label class="field"><span>City</span><select id="bCity"><option>Cebu</option><option>Davao</option></select></label>
      <label class="field"><span>Where are you now?</span><select id="bStage"><option>Not listed yet</option><option>Already hosting</option></select></label>
     </div>
+    <label class="field"><span>Email (optional, for your confirmation)</span><input id="bEmail" type="email" autocomplete="email"></label>
     <label class="field"><span>Building and unit type</span><input id="bUnit" placeholder="e.g. Sanremo Oasis, 2-bedroom"></label>
     <label class="field"><span>Anything else? (optional)</span><textarea id="bNote"></textarea></label>
     <div class="summary" id="bSum">No time picked yet.</div>
     <p class="err" id="bErr" role="alert"></p>
     <button class="btn" type="submit">Send appointment request <span class="ar">&#8594;</span></button>
-    <p class="alt">Prefer email? <a id="bMail" href="mailto:roldansato@gmail.com">Email the request instead</a>. The request opens as a Google Calendar invite to roldansato@gmail.com, and Roldan confirms with you.</p>
+    <p class="alt">Prefer email? <a id="bMail" href="mailto:roldansato@gmail.com">Email the request instead</a>. Your request goes straight to Roldan, who confirms with you.</p>
    </form>
   </div>
  </div>
@@ -582,6 +583,7 @@ function calc(){const p=+cPay.value||0,s=+cStays.value||0,e=+cExp.value||0,f=+cT
 ['cPay','cStays','cExp','cType'].forEach(id=>document.getElementById(id).addEventListener('input',calc));calc();
 
 // booking calendar
+const GP='https://script.google.com/macros/s/AKfycbyEyEwM4aLgp5LuGw3h-OUSqAh2uAml0QREJkSP6k4qzVu0qkcbz_ZRJEHbe6XfxJrK/exec';let TAKEN=new Set();fetch(GP+'?ownslots=1').then(r=>r.json()).then(d=>{TAKEN=new Set(d.taken||[]);drawSlots()}).catch(()=>{});
 const EMAIL='roldansato@gmail.com',TIMES=['09:00','10:00','11:00','13:00','14:00','15:00','16:00','17:00'];
 const today=new Date();today.setHours(0,0,0,0);
 const maxD=new Date(today);maxD.setDate(maxD.getDate()+45);
@@ -601,7 +603,7 @@ function drawCal(){
 }
 function drawSlots(){const s=document.getElementById('slots');s.innerHTML='';
  document.getElementById('slotLabel').textContent=selD?'Available times on '+fmtD(selD):'Choose a date to see available times';
- if(!selD)return;TIMES.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=fmtT(t);b.setAttribute('aria-pressed',t===selT);
+ if(!selD)return;const kd=selD.getFullYear()+'-'+String(selD.getMonth()+1).padStart(2,'0')+'-'+String(selD.getDate()).padStart(2,'0');TIMES.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=fmtT(t);b.setAttribute('aria-pressed',t===selT);if(TAKEN.has(kd+' '+t)){b.disabled=true;b.title='Already booked'}
   b.onclick=()=>{selT=t;drawSlots();sum()};s.appendChild(b)});}
 const v=id=>document.getElementById(id).value.trim();
 function details(){return 'Discovery call request from the Cozy Stay profile\n\nName: '+v('bName')+'\nContact: '+v('bPhone')+'\nCity: '+v('bCity')+'\nBuilding / unit: '+v('bUnit')+'\nStage: '+v('bStage')+(v('bNote')?'\nNotes: '+v('bNote'):'');}
@@ -615,10 +617,17 @@ document.getElementById('bform').addEventListener('submit',e=>{e.preventDefault(
  if(!selD||!selT){err.textContent='Please pick a date and a time first.';return}
  if(!v('bName')){err.textContent='Please add your name.';document.getElementById('bName').focus();return}
  err.textContent='';const p=n=>String(n).padStart(2,'0');const [h,m]=selT.split(':').map(Number);
- const ds=selD.getFullYear()+p(selD.getMonth()+1)+p(selD.getDate());const st=ds+'T'+p(h)+p(m)+'00';const en=ds+'T'+p(m===30?h+1:h)+p(m===30?0:30)+'00';
- const url='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Cozy Stay discovery call · '+v('bName'))+'&dates='+st+'/'+en+'&ctz=Asia/Manila&add='+encodeURIComponent(EMAIL)+'&details='+encodeURIComponent(details());
- const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
- err.style.color='var(--sage)';err.textContent='Google Calendar opened in a new tab. Tap Save there to send the invite.';});
+ const btn=e.target.querySelector('button[type=submit]');btn.disabled=true;const bt=btn.innerHTML;btn.textContent='Sending…';
+ const slot=selD.getFullYear()+'-'+p(selD.getMonth()+1)+'-'+p(selD.getDate())+' '+selT;
+ const body={kind:'owner',site:1,name:v('bName'),mobile:v('bPhone'),email:v('bEmail'),city:v('bCity')==='Cebu'?'Cebu City':'Davao City',bld:v('bUnit'),use:v('bStage'),msg:v('bNote'),interest:'Discovery call (website)',appt:'call',slot:slot};
+ const gcal=()=>{const ds=selD.getFullYear()+p(selD.getMonth()+1)+p(selD.getDate());const st=ds+'T'+p(h)+p(m)+'00';const en=ds+'T'+p(m===30?h+1:h)+p(m===30?0:30)+'00';
+  const url='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Cozy Stay discovery call · '+v('bName'))+'&dates='+st+'/'+en+'&ctz=Asia/Manila&add='+encodeURIComponent(EMAIL)+'&details='+encodeURIComponent(details());
+  const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+  err.style.color='var(--sage)';err.textContent='Google Calendar opened in a new tab. Tap Save there to send the invite.';btn.disabled=false;btn.innerHTML=bt;};
+ fetch(GP,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)}).then(r=>r.json()).then(r=>{
+  if(r&&r.ok){err.style.color='var(--sage)';err.textContent='Request sent! Your reference is '+r.id+'. Roldan will confirm your call'+(v('bEmail')?' and a calendar invite is on its way to your email':'')+'.';btn.textContent='Request sent ✓';TAKEN.add(slot);}
+  else{err.style.color='';err.textContent=(r&&r.msg)||'Please try again.';btn.disabled=false;btn.innerHTML=bt;}
+ }).catch(gcal);});
 drawCal();drawSlots();sum();
 
 const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>8),{passive:true});
